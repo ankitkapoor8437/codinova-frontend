@@ -1,4 +1,3 @@
-import { Container } from 'postcss'
 import React from 'react'
 
 const exChangeList = [
@@ -135,10 +134,11 @@ const exChangeList = [
     },
 ]
 
+
 const ExchangeList = () => {
     return (
         <section>
-            <div className="flex flex-col mt-[10px]">
+            <div className="flex flex-col mt-10">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -147,7 +147,7 @@ const ExchangeList = () => {
                                     <tr>
                                         <th
                                             scope="col"
-                                            className="px-20 py-3 text-left text-md font-semibold text-gray-500 uppercase tracking-wider"
+                                            className="px-6 py-3 text-left text-md font-semibold text-gray-500 uppercase tracking-wider"
                                         >
                                             Exchanges
                                         </th>
@@ -157,7 +157,6 @@ const ExchangeList = () => {
                                         >
                                             24H Trade Volume
                                         </th>
-
                                         <th
                                             scope="col"
                                             className="px-6 py-3 text-center text-md font-semibold text-gray-500 uppercase tracking-wider"
@@ -179,16 +178,16 @@ const ExchangeList = () => {
                                                     </div>
                                                     <div className="ml-4">
                                                         <div className="text-lg font-medium text-gray-900">{listData.name}</div>
-                                                        <a href={listData.website} className="text-md mt-2 text-gray-500">{listData.website}</a>
-
+                                                        <a href={listData.website} className="text-md mt-2 text-gray-500" target="_blank" rel="noopener noreferrer">
+                                                            {listData.website}
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-center whitespace-nowrap">
                                                 <div className="text-md font-bold text-gray-900">$ {listData.data_symbols_count} Billion</div>
                                             </td>
-                                            <td scope="col"
-                                                className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <td scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 <a href="#" className="text-indigo-600 text-lg font-bold hover:text-indigo-900">
                                                     Delete
                                                 </a>
@@ -201,12 +200,11 @@ const ExchangeList = () => {
                     </div>
                 </div>
             </div>
-
         </section>
-    )
+    );
 }
 
-export default ExchangeList
+export default ExchangeList;
 
 
 
