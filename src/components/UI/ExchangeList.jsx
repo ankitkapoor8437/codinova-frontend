@@ -187,10 +187,10 @@ const ExchangeList = () => {
                                             <td className="px-6 py-4 text-center whitespace-nowrap">
                                                 <div className="text-md font-bold text-gray-900">$ {listData.data_symbols_count} Billion</div>
                                             </td>
-                                            <td scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                <a href="#" className="text-indigo-600 text-lg font-bold hover:text-indigo-900">
+                                            <td className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <button className="text-indigo-600 text-lg font-bold hover:text-indigo-900">
                                                     Delete
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}
