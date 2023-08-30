@@ -1,16 +1,17 @@
 import React from 'react'
-import Header from '../components/header/Header'
-import Navbar from '../components/navbar.jsx/Navbar'
-import ExchangeList from '../components/exchangeList/ExchangeList'
+import Header from '../components/UI/Header';
+import ExchangeList from '../components/UI/ExchangeList';
+import Searchbar from '../components/UI/Searchbar';
+
 
 const Layout = () => {
-  return (
-    <div>
-        <Navbar/>
-        <Header/>
-        <ExchangeList/>
-    </div>
-  )
+    return (
+        <section>
+            <Header/>
+            <Searchbar/>
+            <ExchangeList/>
+        </section>
+    )
 }
 
-export default Layout
+export default Layout;
