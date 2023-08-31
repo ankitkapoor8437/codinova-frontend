@@ -6,10 +6,13 @@ import { addExchangeData, addExchangeIcon, getExchangeDataApi, getExchangeIconAp
 
 
 const Navbar = () => {
+    // State variables to hold exchange data and icons
     const [exchangeData, setExchangeData] = useState([]);
     const [exchangeIcon, setExchangeIcon] = useState([]);
 
+    // Function to handle button click and perform API requests
     const handleButtonClick = async () => {
+        // Fetch exchange data and icons from APIs
         const exchangeDataApiResponse = await getRequest(getExchangeDataApi);
         const exchangeIconApiResponse = await getRequest(getExchangeIconApi);
         if (exchangeDataApiResponse && exchangeIconApiResponse) {
@@ -19,7 +22,7 @@ const Navbar = () => {
 
     }
 
-
+    // useEffect hook to send exchange data and icons to the backend
     useEffect(() => {
         if (exchangeData && exchangeIcon && exchangeData !== [] && exchangeIcon !== []) {
             const addDataUrl = process.env.REACT_APP_NODE_BACKEND_URL + addExchangeData
@@ -27,12 +30,9 @@ const Navbar = () => {
             postRequest(addDataUrl, exchangeData);
             postRequest(addIconUrl, exchangeIcon);
         }
-        
+
     }, [exchangeData, exchangeIcon])
 
-
-    // console.log(exchangeData);
-    // console.log(exchangeIcon);
 
     return (
         <header className='w-full h-[80px] leading-[80px] flex items-center'>
@@ -69,9 +69,8 @@ const Navbar = () => {
 
                     {/* Menu Right Section */}
                     <div className='flex items-center gap-4'>
-                        <button className='flex items-center text-xs gap-1 text-smallTextColor font-[600]  border border-solid 
-          border-smallTextColor py-2 px-2 rounded-md max-h-[30px] hover:bg-smallTextColor hover:text-white 
-          hover:font-[500] ease-in-out duration-100'
+                        {/* Button to handle Update request */}
+                        <button className='flex items-center text-xs gap-1 text-smallTextColor font-[600] border border-solid border-smallTextColor py-2 px-2 rounded-md max-h-[30px] hover:bg-smallTextColor hover:text-white hover:font-[500] ease-in-out duration-100'
                             onClick={() => { handleButtonClick() }}>
                             <i className='ri-send-plane-line'></i>Update Exchange Data
                         </button>
