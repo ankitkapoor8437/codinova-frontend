@@ -19,6 +19,7 @@ const Navbar = () => {
 
     }
 
+
     useEffect(() => {
         if (exchangeData && exchangeIcon && exchangeData !== [] && exchangeIcon !== []) {
             const addDataUrl = process.env.REACT_APP_NODE_BACKEND_URL + addExchangeData
@@ -26,6 +27,7 @@ const Navbar = () => {
             postRequest(addDataUrl, exchangeData);
             postRequest(addIconUrl, exchangeIcon);
         }
+        
     }, [exchangeData, exchangeIcon])
 
 
