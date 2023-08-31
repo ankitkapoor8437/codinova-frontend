@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Crypto Exchange Listing App - Frontend [ Codinova ]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Crypto Exchange Listing App frontend repository! This application allows users to view and manage cryptocurrency exchange data. It integrates with the backend to fetch data from the Coinapi.io open API, provides search and pagination features, and displays the data in a user-friendly table format.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Update Data:** Click the "Update Data" button to fetch the latest cryptocurrency exchange data from the Coinapi.io API and store it in the backend database.
 
-### `npm start`
+- **Search Functionality:** Use the search bar to find specific cryptocurrencies or exchange information quickly.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Data Table:** View the fetched cryptocurrency exchange data in a paginated table format. Each row represents a cryptocurrency with relevant details like name, symbol, current price, and more.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Pagination:** Navigate through the data table using pagination controls to view different pages of cryptocurrency listings.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To set up and run the Crypto Exchange Listing App front on your local machine, follow these steps:
 
-### `npm run build`
+1. **Clone the Repository:**
+2. **Navigate to the Project Directory:**
+3. **Install Dependencies:**
+4. **Start Development Server:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The development server will start, and you can access the application by opening your browser and navigating to `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Folder Structure
 
-### `npm run eject`
+The project's front end follows a standard React application structure with additional components and files for the specific features. Here's a breakdown of the important directories:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `src/`: Contains the main source code of the application.
+- `components/`: Organize React components in this directory.
+ - `Header.js`: Displays the app header and navigation.
+ - `ExchangeTable.js`: Renders the data table with pagination and search functionalities.
+- `App.js`: The main component that serves as the entry point.
+- `index.js`: Renders the root component and initializes the app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Click the "Update Data" button to fetch and update the latest cryptocurrency exchange data from the Coinapi.io API into the backend database.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Use the search bar to filter and find specific cryptocurrencies or exchange details.
 
-## Learn More
+- Navigate through the paginated data table to view different pages of cryptocurrency listings.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Contributions are welcome! If you have improvements or new features to add, follow these steps:
 
-### Code Splitting
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Make your changes and commit them.
+4. Push the changes to your fork.
+5. Create a pull request on the original repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
+This project is licensed under the [MIT License](LICENSE).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contact
 
-### Making a Progressive Web App
+If you have questions or need assistance, feel free to contact the project maintainers.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+Happy crypto-exploring!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
