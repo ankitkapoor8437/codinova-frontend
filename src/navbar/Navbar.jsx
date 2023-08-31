@@ -29,8 +29,8 @@ const Navbar = () => {
     }, [exchangeData, exchangeIcon])
 
 
-    console.log(exchangeData);
-    console.log(exchangeIcon);
+    // console.log(exchangeData);
+    // console.log(exchangeIcon);
 
     return (
         <header className='w-full h-[80px] leading-[80px] flex items-center'>

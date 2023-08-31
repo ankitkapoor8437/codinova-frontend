@@ -1,21 +1,61 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, IconButton } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
-import { useSelector } from 'react-redux';
-
-
+import { getExchangeData } from '../../apis/axios';
+import { addExchangeData, addExchangeIcon } from '../../apis/routes';
+import avatarIcon from '../assets/images/null.png'
 
 
 const ExchangeList = () => {
 
+    const [combinedData, setCombinedData] = useState([]);
+    const [exchangeData, setExchangeData] = useState([]);
+    const [exchangeIcon, setExchangeIcon] = useState([]);
+
+    const fetchDataApi = async () => {
+        try {
+            const exchangeDataResponse = await getExchangeData(addExchangeData);
+            const exchangeIconResponse = await getExchangeData(addExchangeIcon);
+
+            if (exchangeDataResponse && exchangeIconResponse) {
+                setExchangeData(exchangeDataResponse);
+                setExchangeIcon(exchangeIconResponse);
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
+    useEffect(() => {
+        fetchDataApi();
+    }, []);
+
+    useEffect(() => {
+        if (exchangeData.length > 0 && exchangeIcon.length > 0) {
+            const combinedData = exchangeData.map(data => {
+                const matchingIcon = exchangeIcon.find(icon => icon.exchange_id === data.exchange_id);
+                return {
+                    ...data,
+                    icon_url: matchingIcon ? matchingIcon.url : null,
+                };
+            });
+
+            setCombinedData(combinedData);
+        }
+    }, [exchangeData, exchangeIcon]);
+
+    // console.log(combinedData);
+
+
+    // Pagination Logic
     const [exchanges, setExchanges] = useState([]);
     const [active, setActive] = useState(1);
     const recordsPerPage = 10;
 
- 
+
     const firstIndex = (active - 1) * recordsPerPage;
     const lastIndex = firstIndex + recordsPerPage;
-    const records = exchanges.slice(firstIndex, lastIndex);
+    const records = combinedData.slice(firstIndex, lastIndex);
     const numberOfPages = Math.ceil(exchanges.length / recordsPerPage);
     const numbers = [...Array(numberOfPages + 1).keys()].slice(1);
 
@@ -74,7 +114,12 @@ const ExchangeList = () => {
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <div className="flex items-center">
                                                         <div className="flex-shrink-0 h-10 w-10">
-                                                            <img className="h-10 w-10 rounded-full" src={listData.url} alt="" />
+                                                            {/* Use a conditional rendering to show either the icon or a placeholder */}
+                                                            {listData.icon_url ? (
+                                                                <img className="h-10 w-10 rounded-full" src={listData.icon_url} alt="" />
+                                                            ) : (
+                                                                <img className="h-10 w-10 rounded-full" src={avatarIcon} alt="avatarIcon" />
+                                                                )}
                                                         </div>
                                                         <div className="ml-4">
                                                             <div className="text-lg font-medium text-gray-900">{listData.name}</div>
