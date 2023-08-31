@@ -1,141 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Button, IconButton } from "@material-tailwind/react";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { useSelector } from 'react-redux';
 
-const exChangeList = [
 
-    
-    {
-        "exchange_id": "BINANCE",
-        "website": "https://www.binance.com/",
-        "name": "Binance",
-        "data_quote_start": "2017-12-18T00:00:00.0000000Z",
-        "data_quote_end": "2023-08-29T00:00:00.0000000Z",
-        "data_orderbook_start": "2017-12-18T21:50:58.3910192Z",
-        "data_orderbook_end": "2023-07-07T00:00:00.0000000Z",
-        "data_trade_start": "2017-07-14T00:00:00.0000000Z",
-        "data_trade_end": "2023-08-29T00:00:00.0000000Z",
-        "data_symbols_count": 2299,
-        "volume_1hrs_usd": 0,
-        "volume_1day_usd": 0,
-        "volume_1mth_usd": 0,
-        "url": "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_32/20ddad0b4e4d4ea4ac92237292aa849b.png"
-    },
-    {
-        "exchange_id": "KRAKEN",
-        "website": "https://www.kraken.com/",
-        "name": "Kraken",
-        "data_quote_start": "2014-07-31T00:00:00.0000000Z",
-        "data_quote_end": "2023-08-29T00:00:00.0000000Z",
-        "data_orderbook_start": "2014-07-31T13:05:46.0000000Z",
-        "data_orderbook_end": "2023-07-06T00:00:00.0000000Z",
-        "data_trade_start": "2013-10-22T00:00:00.0000000Z",
-        "data_trade_end": "2023-08-29T00:00:00.0000000Z",
-        "data_symbols_count": 809,
-        "volume_1hrs_usd": 0,
-        "volume_1day_usd": 0,
-        "volume_1mth_usd": 0
-        ,
-        "url": "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_32/20ddad0b4e4d4ea4ac92237292aa849b.png"
-    },
-    {
-        "exchange_id": "COINBASE",
-        "website": "https://pro.coinbase.com/",
-        "name": "Coinbase Pro (GDAX)",
-        "data_quote_start": "2015-05-17T00:00:00.0000000Z",
-        "data_quote_end": "2023-08-29T00:00:00.0000000Z",
-        "data_orderbook_start": "2015-05-17T00:51:32.6370000Z",
-        "data_orderbook_end": "2023-07-06T00:00:00.0000000Z",
-        "data_trade_start": "2015-01-14T00:00:00.0000000Z",
-        "data_trade_end": "2023-08-29T00:00:00.0000000Z",
-        "data_symbols_count": 672,
-        "volume_1hrs_usd": 0,
-        "volume_1day_usd": 0,
-        "volume_1mth_usd": 0
-        ,
-        "url": "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_32/20ddad0b4e4d4ea4ac92237292aa849b.png"
-    },
-    {
-        "exchange_id": "BITSTAMP",
-        "website": "https://www.bitstamp.net/",
-        "name": "Bitstamp Ltd.",
-        "data_quote_start": "2014-02-24T00:00:00.0000000Z",
-        "data_quote_end": "2023-08-29T00:00:00.0000000Z",
-        "data_orderbook_start": "2014-02-24T17:43:05.0000000Z",
-        "data_orderbook_end": "2023-07-06T00:00:00.0000000Z",
-        "data_trade_start": "2011-09-13T00:00:00.0000000Z",
-        "data_trade_end": "2023-08-29T00:00:00.0000000Z",
-        "data_symbols_count": 205,
-        "volume_1hrs_usd": 0,
-        "volume_1day_usd": 0,
-        "volume_1mth_usd": 0
-        ,
-        "url": "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_32/20ddad0b4e4d4ea4ac92237292aa849b.png"
-    },
-    {
-        "exchange_id": "GEMINI",
-        "website": "https://gemini.com/",
-        "name": "Gemini",
-        "data_quote_start": "2017-03-18T00:00:00.0000000Z",
-        "data_quote_end": "2023-08-29T00:00:00.0000000Z",
-        "data_orderbook_start": "2017-03-18T22:53:42.0948480Z",
-        "data_orderbook_end": "2023-07-06T00:00:00.0000000Z",
-        "data_trade_start": "2015-10-08T00:00:00.0000000Z",
-        "data_trade_end": "2023-08-29T00:00:00.0000000Z",
-        "data_symbols_count": 163,
-        "volume_1hrs_usd": 0,
-        "volume_1day_usd": 0,
-        "volume_1mth_usd": 0,
-        "url": "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_32/20ddad0b4e4d4ea4ac92237292aa849b.png",
-        "metric_id": [
-            "AUCTION_COLLAR_PRICE",
-            "AUCTION_HIGHEST_BID",
-            "AUCTION_LOWEST_ASK",
-            "AUCTION_PRICE",
-            "AUCTION_QUANTITY",
-            "AUCTION_RESULT",
-            "SYMBOL_DETAILS_MIN_ORDER_SIZE",
-            "SYMBOL_DETAILS_QUOTE_INCREMENT",
-            "SYMBOL_DETAILS_STATUS",
-            "SYMBOL_DETAILS_TICK_SIZE",
-            "SYMBOL_DETAILS_WRAP_ENABLED"
-        ]
-    },
-    {
-        "exchange_id": "ECB",
-        "website": "https://www.ecb.europa.eu/",
-        "name": "European Central Bank",
-        "data_quote_start": "2020-08-31T00:00:00.0000000Z",
-        "data_quote_end": "2023-08-29T00:00:00.0000000Z",
-        "data_trade_start": "2022-06-06T14:00:00.0000000Z",
-        "data_trade_end": "2022-06-10T14:00:00.0000000Z",
-        "data_symbols_count": 32,
-        "volume_1hrs_usd": 0,
-        "volume_1day_usd": 0,
-        "volume_1mth_usd": 0,
-
-        "url": "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_32/20ddad0b4e4d4ea4ac92237292aa849b.png"
-        
-    },
-    {
-        "exchange_id": "LMAXDIGITAL",
-        "website": "https://www.lmaxdigital.com/",
-        "name": "LMAX Digital",
-        "data_quote_start": "2020-12-03T00:00:00.0000000Z",
-        "data_quote_end": "2022-10-09T00:00:00.0000000Z",
-        "data_orderbook_start": "2022-01-02T00:00:00.0000000Z",
-        "data_orderbook_end": "2022-10-10T00:00:00.0000000Z",
-        "data_trade_start": "2020-12-03T00:00:00.0000000Z",
-        "data_trade_end": "2022-10-09T00:00:00.0000000Z",
-        "data_symbols_count": 16,
-        "volume_1hrs_usd": 0,
-        "volume_1day_usd": 0,
-        "volume_1mth_usd": 0
-        ,
-        "url": "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_32/20ddad0b4e4d4ea4ac92237292aa849b.png"
-    },
-]
 
 
 const ExchangeList = () => {
+
+    const [exchanges, setExchanges] = useState([]);
+    const [active, setActive] = useState(1);
+    const recordsPerPage = 10;
+
+ 
+    const firstIndex = (active - 1) * recordsPerPage;
+    const lastIndex = firstIndex + recordsPerPage;
+    const records = exchanges.slice(firstIndex, lastIndex);
+    const numberOfPages = Math.ceil(exchanges.length / recordsPerPage);
+    const numbers = [...Array(numberOfPages + 1).keys()].slice(1);
+
+    const getItemProps = (index) => ({
+        variant: active === index ? "filled" : "text",
+        color: "blue",
+        onClick: () => setActive(index),
+    });
+
+    const next = () => {
+        if (active === numbers.length) return;
+        setActive(active + 1);
+    };
+
+    const prev = () => {
+        if (active === 1) return;
+        setActive(active - 1);
+    };
+
     return (
         <section>
             <div className="flex flex-col ">
@@ -169,37 +68,71 @@ const ExchangeList = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {exChangeList.map(listData => (
-                                        <tr key={listData.exchange_id}>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <div className="flex-shrink-0 h-10 w-10">
-                                                        <img className="h-10 w-10 rounded-full" src={listData.url} alt="" />
+                                    {
+                                        records.map(listData => (
+                                            <tr key={listData.exchange_id}>
+                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                    <div className="flex items-center">
+                                                        <div className="flex-shrink-0 h-10 w-10">
+                                                            <img className="h-10 w-10 rounded-full" src={listData.url} alt="" />
+                                                        </div>
+                                                        <div className="ml-4">
+                                                            <div className="text-lg font-medium text-gray-900">{listData.name}</div>
+                                                            <a href={listData.website} className="text-md mt-2 text-gray-500" target="_blank" rel="noopener noreferrer">
+                                                                {listData.website}
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div className="ml-4">
-                                                        <div className="text-lg font-medium text-gray-900">{listData.name}</div>
-                                                        <a href={listData.website} className="text-md mt-2 text-gray-500" target="_blank" rel="noopener noreferrer">
-                                                            {listData.website}
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 text-center whitespace-nowrap">
-                                                <div className="text-md font-bold text-gray-900">$ {listData.data_symbols_count} Billion</div>
-                                            </td>
-                                            <td className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                <button className="text-indigo-600 text-lg font-bold hover:text-indigo-900">
-                                                    Delete
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                                </td>
+                                                <td className="px-6 py-4 text-center whitespace-nowrap">
+                                                    <div className="text-md font-bold text-gray-900">$ {listData.data_symbols_count} Billion</div>
+                                                </td>
+                                                <td className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    <button className="text-indigo-600 text-lg font-bold hover:text-indigo-900">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
                                 </tbody>
                             </table>
+
+                            <div className='flex justify-center items-center mt-[35px] mb-[35px]'>
+                                <div className="flex items-center gap-4">
+                                    <Button
+                                        variant="text"
+                                        className="flex items-center gap-2"
+                                        onClick={prev}
+                                        disabled={active === 1}
+                                    >
+                                        <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
+                                    </Button>
+                                    <div className="flex justify-center items-center gap-2">
+                                        {numbers.map((number) => (
+                                            <IconButton key={number} {...getItemProps(number)}>
+                                                {number}
+                                            </IconButton>
+                                        ))}
+                                    </div>
+                                    <Button
+                                        variant="text"
+                                        className="flex items-center gap-2"
+                                        onClick={next}
+                                        disabled={active === numbers.length}
+                                    >
+                                        Next
+                                        <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </section>
     );
 }

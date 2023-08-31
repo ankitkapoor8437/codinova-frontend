@@ -1,7 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import menuItems from '../data/menuItems'
+import { getRequest, postRequest } from '../apis/axios';
+import { addExchangeData, addExchangeIcon, getExchangeDataApi, getExchangeIconApi } from '../apis/routes';
+
+
 
 const Navbar = () => {
+    const [exchangeData, setExchangeData] = useState([]);
+    const [exchangeIcon, setExchangeIcon] = useState([]);
+
+    const handleButtonClick = async () => {
+        const exchangeDataApiResponse = await getRequest(getExchangeDataApi);
+        const exchangeIconApiResponse = await getRequest(getExchangeIconApi);
+        if (exchangeDataApiResponse && exchangeIconApiResponse) {
+            setExchangeData(exchangeDataApiResponse);
+            setExchangeIcon(exchangeIconApiResponse);
+        }
+
+    }
+
+    useEffect(() => {
+        if (exchangeData && exchangeIcon && exchangeData !== [] && exchangeIcon !== []) {
+            const addDataUrl = process.env.REACT_APP_NODE_BACKEND_URL + addExchangeData
+            const addIconUrl = process.env.REACT_APP_NODE_BACKEND_URL + addExchangeIcon
+            postRequest(addDataUrl, exchangeData);
+            postRequest(addIconUrl, exchangeIcon);
+        }
+    }, [exchangeData, exchangeIcon])
+
+
+    console.log(exchangeData);
+    console.log(exchangeIcon);
+
     return (
         <header className='w-full h-[80px] leading-[80px] flex items-center'>
             <div className="container">
@@ -39,8 +69,9 @@ const Navbar = () => {
                     <div className='flex items-center gap-4'>
                         <button className='flex items-center text-xs gap-1 text-smallTextColor font-[600]  border border-solid 
           border-smallTextColor py-2 px-2 rounded-md max-h-[30px] hover:bg-smallTextColor hover:text-white 
-          hover:font-[500] ease-in-out duration-100'>
-                            <i className='ri-send-plane-line'></i>Refresh Data
+          hover:font-[500] ease-in-out duration-100'
+                            onClick={() => { handleButtonClick() }}>
+                            <i className='ri-send-plane-line'></i>Update Exchange Data
                         </button>
                     </div>
                     {/* Menu Right End */}
