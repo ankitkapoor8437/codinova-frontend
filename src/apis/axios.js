@@ -1,6 +1,6 @@
 import axios from "axios";
-import { addExchangeData, addExchangeIcon } from "./routes";
 
+//  Performs an HTTP GET request to the specified API endpoint.
 export function getRequest(api) {
     const url = api;
     console.log(url, process.env.REACT_APP_API_KEY);
@@ -18,6 +18,7 @@ export function getRequest(api) {
 
 }
 
+// Performs an HTTP POST request to the specified API endpoint.
 export function postRequest(api, payload) {
     const url = api;
     axios.post(url, { payload })
@@ -29,16 +30,4 @@ export function postRequest(api, payload) {
         })
 }
 
-
-export function getExchangeData(api) {
-    const url = process.env.REACT_APP_NODE_BACKEND_URL + api;
-    return axios.get(url)
-        .then(response => {
-            return (response.data);
-
-        })
-        .catch(error => {
-            return ({ Error: error });
-        })
-}
 

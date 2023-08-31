@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 
-// Read User
+// Read Exchange Data from the DB
 export const readData = createAsyncThunk("readData", async (_, { rejectWithValue }) => {
     try {
         const exchangeDataResponse = await fetch("http://localhost:7000/addExchangeData");
@@ -18,6 +18,7 @@ export const readData = createAsyncThunk("readData", async (_, { rejectWithValue
         const exchangeData = await exchangeDataResponse.json();
         const exchangeIcon = await exchangeIconResponse.json();
 
+        //Function to integrate the Data from two DB's  
         const combinedData = exchangeData.map(data => {
             const matchingIcon = exchangeIcon.find(icon => icon.exchange_id === data.exchange_id);
             return {
@@ -32,30 +33,18 @@ export const readData = createAsyncThunk("readData", async (_, { rejectWithValue
     }
 });
 
-
-// Delete User
-export const deleteUser = createAsyncThunk("deleteUser", async (id, { rejectWithValue }) => {
-    try {
-        const response = await fetch(`https://64d3244967b2662bf3dbb8a0.mockapi.io/users/${id}`, {
-            method: "DELETE"
-        });
-
-        const result = await response.json();
-        return { id, result };
-    } catch (error) {
-        return rejectWithValue(error.message);
-    }
-});
-
+// Define the exchangeDataDetails slice
 const exchangeDataDetails = createSlice({
     name: "Exchange Data",
     initialState: {
+        // Initial state with exchangeData array, loading indicator, error, and searchData
         exchangeData: [],
         loading: false,
         error: null,
         searchData: [],
     },
     reducers: {
+        // Function to Seach Data
         searchExchange: (state, action) => {
             state.searchData = action.payload;
         }
@@ -74,22 +63,6 @@ const exchangeDataDetails = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-            // Delete User
-            .addCase(deleteUser.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(deleteUser.fulfilled, (state, action) => {
-                state.loading = false;
-                const { id } = action.payload;
-                if (id) {
-                    state.exchangeData = state.exchangeData.filter((data) => data.id !== id);
-                }
-            })
-            .addCase(deleteUser.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
-            })
-
     }
 });
 

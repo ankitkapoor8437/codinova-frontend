@@ -1,3 +1,4 @@
+// Navigation menu items with their corresponding URLs and display names
 const menuItems = [
     {
         url: '/',

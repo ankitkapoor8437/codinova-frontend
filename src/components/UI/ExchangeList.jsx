@@ -9,9 +9,11 @@ import { readData } from '../../feature/exchangeDataSlice';
 
 const ExchangeList = () => {
 
+    // Extract 'exchangeData' and 'searchData' from the app state using useSelector
     const { exchangeData, searchData } = useSelector((state) => state.app);
     const dispatch = useDispatch();
 
+    // useEffect hook to dispatch the 'readData' action when component mounts
     useEffect(() => {
         dispatch(readData());
     }, [dispatch]);
@@ -25,6 +27,7 @@ const ExchangeList = () => {
     const numberOfPages = Math.ceil(exchangeData.length / recordsPerPage);
     const numbers = [...Array(numberOfPages + 1).keys()].slice(1);
 
+    // Logics for the Page movement
     const getItemProps = (index) => ({
         variant: active === index ? "filled" : "text",
         color: "blue",
@@ -48,6 +51,7 @@ const ExchangeList = () => {
 
     return (
         <section>
+
             {/* Refresh button to reload the Data when no data is avalain */}
             <button className='flex items-center text-xs gap-1 text-smallTextColor font-[600] mb-5 border border-solid 
         border-smallTextColor py-2 px-2 rounded-md max-h-[30px] hover:bg-smallTextColor hover:text-white 
@@ -55,6 +59,8 @@ const ExchangeList = () => {
                 onClick={() => { refreshPage() }}>
                 <i className='ri-send-plane-line'></i>Refresh the Table
             </button>
+
+            {/* Exchange Data Table */}
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
@@ -125,6 +131,7 @@ const ExchangeList = () => {
                 </table>
             </div>
 
+            {/* Pagination Section */}
             <div className="flex items-center gap-4 justify-center mt-10">
                 <Button
                     variant="text"
@@ -171,7 +178,6 @@ const ExchangeList = () => {
                     Next <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
                 </Button>
             </div>
-
 
         </section>
     );

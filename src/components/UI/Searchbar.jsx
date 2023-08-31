@@ -3,23 +3,26 @@ import { useDispatch } from 'react-redux';
 import { searchExchange } from '../../feature/exchangeDataSlice';
 
 const Searchbar = () => {
+
+    // State to hold the search data
     const [searchData, setSearchData] = useState("");
     const dispatch = useDispatch();
+
+
+    // useEffect hook to dispatch the 'searchExchange' action when searchData changes
     useEffect(() => {
         dispatch(searchExchange(searchData));
     }, [dispatch, searchData]);
 
     return (
+        // Search Bar Section
         <div >
             <div className="mt-[100px] flex justify-center items-center">
                 <div className="mb-3 xl:w-96">
                     <div className="relative mb-4 flex w-full flex-wrap items-stretch">
                         <input
-                            className="relative m-0 block flex-auto rounded-[30px] border border-solid font-semibold
-                border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base  leading-[1.6]
-                text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3]
-                 focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)]
-                  focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-blue-500 dark:focus:border-primary"
+                            className="relative m-0 block flex-auto rounded-[30px] border border-solid font-semibold border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base  leading-[1.6]
+                text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3]  focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-blue-500 dark:focus:border-primary"
                             placeholder="Find an exchange"
                             aria-label="Search"
                             aria-describedby="button-addon2"
@@ -50,4 +53,4 @@ const Searchbar = () => {
     )
 }
 
-export default Searchbar
+export default Searchbar;
