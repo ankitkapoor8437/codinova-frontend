@@ -18,12 +18,17 @@ export function getRequest(api) {
 
 }
 
+function refreshPage() {
+    window.location.reload(false);
+}
+
 // Performs an HTTP POST request to the specified API endpoint.
 export function postRequest(api, payload) {
     const url = api;
     axios.post(url, { payload })
         .then(response => {
             alert("Data saved successfully!!")
+                refreshPage();
         })
         .catch(error => {
             console.log("Something went wrong!! ")
